@@ -3,16 +3,16 @@ import kotlin.math.absoluteValue
 import kotlin.math.sign
 
 fun main() {
-    fun List<String>.rots() =
-        map { it.replace('L', '-').replace('R', '+').toInt() }
+    fun String.toRotation() =
+        replace('L', '-').replace('R', '+').toInt()
 
     fun part1(input: List<String>) =
-        input.rots()
+        input.map { it.toRotation() }
             .runningFold(50) { dial, rot -> (dial + rot) % 100 }
             .count { it == 0 }
 
     fun part2(input: List<String>) =
-        input.rots()
+        input.map { it.toRotation() }
             .flatMap { nCopies(it.absoluteValue, it.sign) }
             .runningFold(50) { dial, rot -> (dial + rot) % 100 }
             .count { it == 0 }
