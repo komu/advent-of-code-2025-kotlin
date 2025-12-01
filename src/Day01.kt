@@ -1,21 +1,30 @@
+import java.util.Collections.nCopies
+import kotlin.math.absoluteValue
+import kotlin.math.sign
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
+    fun List<String>.rots() =
+        map { it.replace('L', '-').replace('R', '+').toInt() }
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
+    fun part1(input: List<String>) =
+        input.rots()
+            .runningFold(50) { dial, rot -> (dial + rot) % 100 }
+            .count { it == 0 }
 
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
+    fun part2(input: List<String>) =
+        input.rots()
+            .flatMap { nCopies(it.absoluteValue, it.sign) }
+            .runningFold(50) { dial, rot -> (dial + rot) % 100 }
+            .count { it == 0 }
 
-    // Or read a large test input from the `src/Day01_test.txt` file:
     val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    verifySolution(3, part1(testInput))
+    verifySolution(6, part2(testInput))
 
-    // Read the input from the `src/Day01.txt` file.
     val input = readInput("Day01")
     part1(input).println()
     part2(input).println()
+
+    verifySolution(1086, part1(input))
+    verifySolution(6268, part2(input))
 }
