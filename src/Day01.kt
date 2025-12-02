@@ -17,11 +17,11 @@ fun main() {
             .runningFold(50) { dial, rot -> (dial + rot) % 100 }
             .count { it == 0 }
 
-    val testInput = readInput("Day01_test")
+    val testInput = readInput("Day01_test").lines()
     verifySolution(3, part1(testInput))
     verifySolution(6, part2(testInput))
 
-    val input = readInput("Day01")
+    val input = readInput("Day01").lines()
     part1(input).println()
     part2(input).println()
 

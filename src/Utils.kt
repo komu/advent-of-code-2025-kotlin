@@ -7,7 +7,7 @@ import kotlin.system.exitProcess
 /**
  * Reads lines from the given input txt file.
  */
-fun readInput(name: String) = Path("src/$name.txt").readText().trim().lines()
+fun readInput(name: String) = Path("src/$name.txt").readText().trim()
 
 /**
  * Converts string to md5 hash.
@@ -24,6 +24,7 @@ fun Any?.println() = println(this)
 fun <T> verifySolution(expected: T, actual: T) {
     if (expected != actual) {
         System.err.println("Expected: $expected, Actual: $actual")
+        Thread.dumpStack()
         exitProcess(0)
     }
 }
