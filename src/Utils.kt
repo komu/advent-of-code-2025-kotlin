@@ -28,3 +28,5 @@ fun <T> verifySolution(expected: T, actual: T) {
         exitProcess(0)
     }
 }
+
+fun String.digits() = map { it.digitToInt() }
