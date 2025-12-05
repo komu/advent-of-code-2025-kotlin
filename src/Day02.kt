@@ -1,8 +1,5 @@
 fun main() {
 
-    fun parseRange(s: String) =
-        s.split("-").map { it.toLong() }.let { (min, max) -> min..max }
-
     fun isValid(digits: String, maxParts: Int) =
         (2..maxParts).none { ps -> digits.length % ps == 0 && digits.chunked(digits.length / ps).distinct().size == 1 }
 

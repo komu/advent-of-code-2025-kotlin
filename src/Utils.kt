@@ -30,3 +30,9 @@ fun <T> verifySolution(expected: T, actual: T) {
 }
 
 fun String.digits() = map { it.digitToInt() }
+
+fun parseRange(s: String) =
+    s.split("-").map { it.toLong() }.let { (min, max) -> min..max }
+
+val ClosedRange<Long>.size: Long
+    get() = endInclusive - start + 1
