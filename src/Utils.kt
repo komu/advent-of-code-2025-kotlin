@@ -36,3 +36,5 @@ fun parseRange(s: String) =
 
 val ClosedRange<Long>.size: Long
     get() = endInclusive - start + 1
+
+fun Iterable<Long>.product() = fold(1L) { acc, i -> acc * i }
